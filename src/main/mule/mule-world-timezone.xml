@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="mule-world-timezoneFlow" doc:id="c611f9ce-c2d0-4b07-8e37-c4849f5b3049" >
+		<http:listener doc:name="HTTP / GET /timezone/{region}/{city}" doc:id="f7dbfa47-63fb-4429-9af7-46a0464d9b6a" config-ref="HTTP_Listener_config" path="/timezone/{region}/{city}"/>
+		<logger level="INFO" doc:name="START" doc:id="b5165e0e-b585-4450-b045-f296ebe3c1d6" message='"PROCESSING STARTED -&gt;"' category="START-LOGGER"/>
+		<http:request method="GET" doc:name="invoke TimeZone" doc:id="693f3595-3891-4a15-acb0-78d8d33bfd91" config-ref="HTTP_Request_configuration" path="/{region}/{city}" sendCorrelationId="ALWAYS" correlationId="#[uuid()]">
+			<http:uri-params ><![CDATA[#[{
+	region: attributes.uriParams.region,
+	city: attributes.uriParams.city
+}]]]></http:uri-params>
+		</http:request>
+		<ee:transform doc:name="Transform Message" doc:id="e8a631df-9b39-4cc5-9bda-38a20df941bd" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="END" doc:id="359d6718-fb3d-4e49-a493-a9f88a4b3a65" message='"PROCESSING COMPLETED -&gt;"' category="END-LOGGER"/>
+	</flow>
+</mule>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="mule-world-timezone-test-suite.xml" />
+	<munit:test name="mule-world-timezone-test-suite-mule-world-timezoneFlowTest" doc:id="9e1d3a61-6dc5-4043-bc10-850162813aaf" description="Test">
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="74cbc8a7-b781-4fba-99b7-89a31c918021" >
+				<munit:attributes value='#[ { "uriParams": {"region": "Asia", "city": "Kolkata" }}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to mule-world-timezoneFlow" doc:id="ed757302-cdf5-4815-9a5c-8733f1eb78a2" name="mule-world-timezoneFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert expression" doc:id="dac09d78-483e-46ce-a528-968e3537615d" />
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

@@ -54,13 +54,15 @@ pipeline {
 				
 			}
 		}
-
 		
-	}
-	
-	stage('QA Regression Testing') {
+		stage('QA Regression Testing') {
 			steps {
 				bat "C:\\Users\\Rajeev\\AppData\\Roaming\\npm\\newman run D:\\InstalledSoftwares\\newman\\World-TimeZone.postman_collection.json --disable-unicode "
 			}
 		}
+
+		
+	}
+	
+	
 }

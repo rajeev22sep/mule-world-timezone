@@ -33,6 +33,14 @@ pipeline {
 			}
 		}
 		
+		
+		stage('DEV Regression Testing') {
+			steps {
+				bat "C:\\Users\\Rajeev\\AppData\\Roaming\\npm\\newman run D:\\InstalledSoftwares\\newman\\World-TimeZone.postman_collection.json --disable-unicode "
+			}
+		}
+		
+		
 		stage('Deploy QA') {
 		
 		environment {
@@ -49,4 +57,10 @@ pipeline {
 
 		
 	}
+	
+	stage('QA Regression Testing') {
+			steps {
+				bat "C:\\Users\\Rajeev\\AppData\\Roaming\\npm\\newman run D:\\InstalledSoftwares\\newman\\World-TimeZone.postman_collection.json --disable-unicode "
+			}
+		}
 }

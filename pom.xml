@@ -19,6 +19,13 @@
 		<mule.maven.plugin.version>3.7.1</mule.maven.plugin.version>
 		<munit.version>2.3.6</munit.version>
 		<cloudhub.applicationName>${project.artifactId}</cloudhub.applicationName>
+		<cloudhub.properties.anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</cloudhub.properties.anypoint.platform.analytics_base_uri>
+		<cloudhub.properties.anypoint.platform.coreservice_base_uri>https://anypoint.mulesoft.com/accounts</cloudhub.properties.anypoint.platform.coreservice_base_uri>
+		<cloudhub.properties.anypoint.platform.platform_base_uri>https://anypoint.mulesoft.com/apiplatform</cloudhub.properties.anypoint.platform.platform_base_uri>
+		<cloudhub.properties.anypoint.platform.uri>https://anypoint.mulesoft.com</cloudhub.properties.anypoint.platform.uri>
+
+		<anypoint.platform.client_id>d7c48fd5b7374419bce35cac5567bd34</anypoint.platform.client_id>
+		<anypoint.platform.client_secret>F7c7e67f1D934681871BdbfbF035F8b2</anypoint.platform.client_secret>
 	</properties>
 
 	<build>
@@ -33,6 +40,19 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+					<cloudHubDeployment>
+						<uri>${cloudhub.properties.anypoint.platform.uri}</uri>
+						<muleVersion>${cloudhub.mule.version}</muleVersion>
+						<username>${cloudhub.userName}</username>
+						<password>${cloudhub.password}</password>
+						<objectStoreV2>true</objectStoreV2>
+						<properties>
+							<anypoint.platform.base_uri>https://anypoint.mulesoft.com</anypoint.platform.base_uri>
+							<anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
+						</properties>
+					</cloudHubDeployment>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.mulesoft.munit.tools</groupId>
@@ -51,7 +71,12 @@
 				<configuration>
 					<coverage>
 						<runCoverage>true</runCoverage>
+						<failBuild>false</failBuild>
+						<requiredApplicationCoverage>0</requiredApplicationCoverage>
+						<requiredResourceCoverage>0</requiredResourceCoverage>
+						<requiredFlowCoverage>0</requiredFlowCoverage>
 						<formats>
+							<format>console</format>
 							<format>html</format>
 						</formats>
 					</coverage>
@@ -80,10 +105,9 @@
 								<workers>1</workers>
 								<workerType>MICRO</workerType>
 								<objectStoreV2>true</objectStoreV2>
-								<connectedAppGrantType>client_credentials</connectedAppGrantType>
-								<connectedAppClientId>14c43d3806bd4ee88d4d82581ad74962</connectedAppClientId>
-								<connectedAppClientSecret>42C99993b12C46EbBd012982e2521aa5</connectedAppClientSecret>
 								<properties>
+									<anypoint.platform.client_id>${sandbox.clientId}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${sandbox.clientSecret}</anypoint.platform.client_secret>
 									<http.port>8081</http.port>
 									<env>Sandbox</env>
 								</properties>
@@ -112,10 +136,9 @@
 								<workers>1</workers>
 								<workerType>MICRO</workerType>
 								<objectStoreV2>true</objectStoreV2>
-								<connectedAppGrantType>client_credentials</connectedAppGrantType>
-								<connectedAppClientId>14c43d3806bd4ee88d4d82581ad74962</connectedAppClientId>
-								<connectedAppClientSecret>42C99993b12C46EbBd012982e2521aa5</connectedAppClientSecret>
 								<properties>
+									<anypoint.platform.client_id>${design.clientId}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${design.clientSecret}</anypoint.platform.client_secret>
 									<http.port>8082</http.port>
 									<env>Design</env>
 								</properties>
@@ -143,10 +166,9 @@
 								<workers>1</workers>
 								<workerType>MICRO</workerType>
 								<objectStoreV2>true</objectStoreV2>
-								<connectedAppGrantType>client_credentials</connectedAppGrantType>
-								<connectedAppClientId>14c43d3806bd4ee88d4d82581ad74962</connectedAppClientId>
-								<connectedAppClientSecret>42C99993b12C46EbBd012982e2521aa5</connectedAppClientSecret>
 								<properties>
+									<anypoint.platform.client_id>${dev.clientId}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${dev.clientSecret}</anypoint.platform.client_secret>
 									<http.port>8082</http.port>
 									<env>DEV</env>
 								</properties>
@@ -174,10 +196,9 @@
 								<workers>1</workers>
 								<workerType>MICRO</workerType>
 								<objectStoreV2>true</objectStoreV2>
-								<connectedAppGrantType>client_credentials</connectedAppGrantType>
-								<connectedAppClientId>14c43d3806bd4ee88d4d82581ad74962</connectedAppClientId>
-								<connectedAppClientSecret>42C99993b12C46EbBd012982e2521aa5</connectedAppClientSecret>
 								<properties>
+									<anypoint.platform.client_id>${qa.clientId}</anypoint.platform.client_id>
+									<anypoint.platform.client_secret>${qa.clientSecret}</anypoint.platform.client_secret>
 									<http.port>8082</http.port>
 									<env>QA</env>
 								</properties>

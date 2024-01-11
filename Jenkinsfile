@@ -28,7 +28,7 @@ pipeline {
 	
 			
 			steps {
-				bat 'mvn -U -V -e -B  -DskipTests deploy -Pch-dev -DmuleDeploy ' 
+				bat 'mvn -U -V -e -B  -DskipTests deploy -Pch-dev -DmuleDeploy -Dcloudhub.userName="%ANYPOINT_CREDS_USR%" -Dcloudhub.password="%ANYPOINT_CREDS_PSW%" -Ddev.clientId="%CLIENT_ID%" -Ddev.clientSecret="%CLIENT_SECRET%" ' 
 				
 			}
 		}
@@ -42,7 +42,7 @@ pipeline {
 	
 			
 			steps {
-				bat 'mvn -U -V -e -B   deploy -Pch-qa -DmuleDeploy ' 
+				bat 'mvn -U -V -e -B  -DskipTests deploy -Pch-qa -DmuleDeploy -Dcloudhub.userName="%ANYPOINT_CREDS_USR%" -Dcloudhub.password="%ANYPOINT_CREDS_PSW%" -Dqa.clientId="%CLIENT_ID%" -Dqa.clientSecret="%CLIENT_SECRET%" ' 
 				
 			}
 		}

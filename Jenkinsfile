@@ -67,23 +67,18 @@ pipeline {
                             version: pom.version,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
+                            echo "********** NEXUS Details Captured **********";
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
-                                [artifactId: readXML.artifactId,
-                                classifier: '',
-                                file: artifactPath,
-                                type: readXML.packaging],
+                                [artifactId: readXML.artifactId, classifier: '', file: artifactPath, type: readXML.packaging],
 
                                 // Lets upload the pom.xml file for additional information for Transitive dependencies
-                                [artifactId: readXML.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
+                                [artifactId: readXML.artifactId, classifier: '', file: "pom.xml", type: "pom"]
                             ]
                         );
 
                     } else {
-                        error "*** File: ${artifactPath}, could not be found";
+                        error "********** File: ${artifactPath}, could not be found **********";
                     }
                 }
             }

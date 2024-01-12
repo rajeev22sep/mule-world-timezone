@@ -43,12 +43,13 @@ pipeline {
                     echo "The value of packaging is: ${readXML.packaging}";
                     
                     // Find built artifact under target folder
-                    filesByGlob = findFiles(glob: '.\\target\\*.jar');
+                    //filesByGlob = findFiles(glob: '.\\target\\*.jar');
                     // Print some info from the artifact found
                     echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
                     
                     // Extract the path from the File found
-                    artifactPath = filesByGlob[0].path;
+                    //artifactPath = filesByGlob[0].path;
+                    artifactPath = "target\\mule-world-timezone-1.0.0-mule-application.jar";
                     echo "The value of artifactPath is: ${artifactPath}";
                      
                     // Assign to a boolean response verifying If the artifact name exists

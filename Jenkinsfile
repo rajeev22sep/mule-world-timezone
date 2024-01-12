@@ -76,7 +76,7 @@ pipeline {
                                 [artifactId: readXML.artifactId, classifier: '', file: artifactPath, type: readXML.packaging],
 
                                 // Lets upload the pom.xml file for additional information for Transitive dependencies
-                               [artifactId: readXML.artifactId, classifier: '', file: '', type: 'pom']
+                               [artifactId: readXML.artifactId, classifier: '', file: 'pom.xml', type: 'pom']
                             ]
                         );
                         

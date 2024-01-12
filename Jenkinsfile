@@ -23,7 +23,11 @@ pipeline {
 	
 		stage('Build') {
 			steps {
-				bat 'mvn -B -U -e -V clean -DskipTests package'
+				scripts {
+					echo " ****************** BUILD STAGE - STARTED  *****************";
+					bat 'mvn -B -U -e -V clean -DskipTests package'
+					echo " ****************** BUILD STAGE - FINISHED  *****************";
+				}
 			}
 		
 		}

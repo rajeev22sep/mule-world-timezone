@@ -67,7 +67,6 @@ pipeline {
                             version: pom.version,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
-                            echo "********** NEXUS Details Captured **********";
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
                                 [artifactId: readXML.artifactId, classifier: '', file: artifactPath, type: readXML.packaging],
@@ -76,6 +75,8 @@ pipeline {
                                 [artifactId: readXML.artifactId, classifier: '', file: "pom.xml", type: "pom"]
                             ]
                         );
+                        
+                        echo "********** Artifacts and pom.xml both are uploaded **********";
 
                     } else {
                         error "********** File: ${artifactPath}, could not be found **********";

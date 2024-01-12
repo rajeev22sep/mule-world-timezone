@@ -1,5 +1,5 @@
 pipeline {
-	agent any
+	agent master
 	
 	environment {
 		ANYPOINT_CREDS = credentials('ANYPOINT_CREDENTIAL')
@@ -18,6 +18,16 @@ pipeline {
 	
 
 	stages {
+	
+		stage("SCM Clone code") {
+            steps {
+                script {
+                    // Let's clone the source
+                    git 'https://github.com/rajeev22sep/mule-world-timezone.git';
+                }
+            }
+        }
+	
 		stage('Build') {
 			steps {
 				bat 'mvn -B -U -e -V clean -DskipTests package'
@@ -37,7 +47,7 @@ pipeline {
                     pom = readMavenPom file: 'pom.xml';
                     echo " ********* Found POM.XML ********"
                     // Find built artifact under target folder
-                    filesByGlob = findFiles(glob: "target/*.mule-application");
+                    filesByGlob = findFiles(glob: "target\\*.mule-application");
                     // Print some info from the artifact found
                     echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
                     // Extract the path from the File found

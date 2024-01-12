@@ -6,7 +6,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>mule-world-timezone</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-world-timezone</name>

@@ -1,5 +1,5 @@
 pipeline {
-	agent master
+	agent any
 	
 	environment {
 		ANYPOINT_CREDS = credentials('ANYPOINT_CREDENTIAL')

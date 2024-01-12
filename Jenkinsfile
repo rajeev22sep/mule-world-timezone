@@ -19,15 +19,6 @@ pipeline {
 
 	stages {
 	
-		stage("SCM Clone code") {
-            steps {
-                script {
-                    // Let's clone the source
-                    git 'https://github.com/rajeev22sep/mule-world-timezone.git';
-                }
-            }
-        }
-	
 		stage('Build') {
 			steps {
 				bat 'mvn -B -U -e -V clean -DskipTests package'

@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
-                    pom = readMavenPom file: 'pom.xml';
+                    pom = readMavenPom file: '';
                     echo " ********* Found POM.XML ********";
                     echo "The value of groupId is: ${pom.project.groupId}";
                     echo "The value of artifactId is: ${pom.project.artifactId}";

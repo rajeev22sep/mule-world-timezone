@@ -35,12 +35,12 @@ pipeline {
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
-                    pom = readMavenPom file: '';
-                    echo " ********* Found POM.XML ********";
-                    echo "The value of groupId is: ${pom.project.groupId}";
-                    echo "The value of artifactId is: ${pom.project.artifactId}";
-                    echo "The value of version is: ${pom.project.version}";
-                    echo "The value of packaging is: ${pom.project.packaging}";
+                    readXML = readMavenPom file:'';
+                    echo " ********* Found POM.XML :  ${readXML} ********";
+                    echo "The value of groupId is: ${readXML.project.groupId}";
+                    echo "The value of artifactId is: ${readXML.project.artifactId}";
+                    echo "The value of version is: ${readXML.project.version}";
+                    echo "The value of packaging is: ${readXML.project.packaging}";
                     
                     // Find built artifact under target folder
                     filesByGlob = findFiles(glob: "target\\*.mule-application");

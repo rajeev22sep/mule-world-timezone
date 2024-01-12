@@ -2,6 +2,7 @@ pipeline {
 	agent any
 	
 	environment {
+	
 		ANYPOINT_CREDS = credentials('ANYPOINT_CREDENTIAL')
 		
 		// This can be nexus3 or nexus2
@@ -14,6 +15,7 @@ pipeline {
         NEXUS_REPOSITORY = "nexus-releases"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus"
+
 	}
 	
 
@@ -23,6 +25,7 @@ pipeline {
 			steps {
 				bat 'mvn -B -U -e -V clean -DskipTests package'
 			}
+		
 		}
 
 		stage('Munit Test') {
@@ -32,6 +35,7 @@ pipeline {
 		}
 		
 		stage("publish to Nexus") {
+		
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
@@ -63,8 +67,8 @@ pipeline {
                             nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: pom.version,
+                            groupId: readXML.groupId,
+                            version: readXML.version,
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
@@ -72,7 +76,7 @@ pipeline {
                                 [artifactId: readXML.artifactId, classifier: '', file: artifactPath, type: readXML.packaging]
 
                                 // Lets upload the pom.xml file for additional information for Transitive dependencies
-                               // [artifactId: readXML.artifactId, classifier: '', file: readXML, type: "pom"]
+                               [artifactId: readXML.artifactId, classifier: '', file: readXML, type: "pom"]
                             ]
                         );
                         

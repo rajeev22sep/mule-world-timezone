@@ -37,10 +37,10 @@ pipeline {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
                     readXML = readMavenPom file:'';
                     echo " ********* Found POM.XML :  ${readXML} ********";
-                    echo "The value of groupId is: ${readXML.groupId}";
-                    echo "The value of artifactId is: ${readXML.artifactId}";
-                    echo "The value of version is: ${readXML.version}";
-                    echo "The value of packaging is: ${readXML.packaging}";
+                    echo "**********The value of groupId is: ${readXML.groupId} **********";
+                    echo "********** The value of artifactId is: ${readXML.artifactId} **********";
+                    echo "********** The value of version is: ${readXML.version} **********";
+                    echo "********** The value of packaging is: ${readXML.packaging} **********";
                     
                     // Find built artifact under target folder
                     //filesByGlob = findFiles(glob: '\\target\\*.jar');
@@ -50,14 +50,14 @@ pipeline {
                     // Extract the path from the File found
                     //artifactPath = filesByGlob[0].path;
                     artifactPath = ".\\target\\mule-world-timezone-1.0.0-mule-application.jar";
-                    echo "The value of artifactPath is: ${artifactPath}";
+                    echo "********** The value of artifactPath is: ${artifactPath} **********";
                      
                     // Assign to a boolean response verifying If the artifact name exists
                     artifactExists = fileExists artifactPath;
-                    echo "The value of artifactExists is: ${artifactExists}";
+                    echo "********** The value of artifactExists is: ${artifactExists} **********";
 
                     if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${readXML.groupId}, packaging: ${readXML.packaging}, version ${readXML.version}";
+                        echo "********** File: ${artifactPath}, group: ${readXML.groupId}, packaging: ${readXML.packaging}, version ${readXML.version} **********";
 
                         nexusArtifactUploader(
                             nexusVersion: NEXUS_VERSION,
@@ -69,13 +69,13 @@ pipeline {
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
-                                [artifactId: pom.artifactId,
+                                [artifactId: readXML.artifactId,
                                 classifier: '',
                                 file: artifactPath,
-                                type: pom.packaging],
+                                type: readXML.packaging],
 
                                 // Lets upload the pom.xml file for additional information for Transitive dependencies
-                                [artifactId: pom.artifactId,
+                                [artifactId: readXML.artifactId,
                                 classifier: '',
                                 file: "pom.xml",
                                 type: "pom"]

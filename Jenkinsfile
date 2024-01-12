@@ -37,13 +37,13 @@ pipeline {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
                     readXML = readMavenPom file:'';
                     echo " ********* Found POM.XML :  ${readXML} ********";
-                    echo "The value of groupId is: ${readXML.project.groupId}";
-                    echo "The value of artifactId is: ${readXML.project.artifactId}";
-                    echo "The value of version is: ${readXML.project.version}";
-                    echo "The value of packaging is: ${readXML.project.packaging}";
+                    echo "The value of groupId is: ${readXML.groupId}";
+                    echo "The value of artifactId is: ${readXML.artifactId}";
+                    echo "The value of version is: ${readXML.version}";
+                    echo "The value of packaging is: ${readXML.packaging}";
                     
                     // Find built artifact under target folder
-                    filesByGlob = findFiles(glob: "target\\*.mule-application");
+                    filesByGlob = findFiles(glob: "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\mule-world-timezone-declarative-pipeline\\target\\*.${readXML.artifactId}");
                     // Print some info from the artifact found
                     echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
                     // Extract the path from the File found

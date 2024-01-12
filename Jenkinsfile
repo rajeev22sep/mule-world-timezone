@@ -13,9 +13,9 @@ pipeline {
 			}
 		}
 
-		stage('Test') {
+		stage('Munit Test') {
 			steps {
-				bat "mvn -DskipTests test"
+				bat "mvn  test"
 			}
 		}
 
@@ -36,7 +36,7 @@ pipeline {
 		
 		stage('DEV Regression Testing') {
 			steps {
-				bat "C:\\Users\\Rajeev\\AppData\\Roaming\\npm\\newman run D:\\InstalledSoftwares\\newman\\World-TimeZone.postman_collection.json --disable-unicode "
+				bat 'C:\\Users\\Rajeev\\AppData\\Roaming\\npm\\newman run D:\\InstalledSoftwares\\newman\\World-TimeZone.postman_collection.json --disable-unicode '
 			}
 		}
 		
@@ -57,7 +57,7 @@ pipeline {
 		
 		stage('QA Regression Testing') {
 			steps {
-				bat "C:\\Users\\Rajeev\\AppData\\Roaming\\npm\\newman run D:\\InstalledSoftwares\\newman\\World-TimeZone.postman_collection.json --disable-unicode "
+				bat 'C:\\Users\\Rajeev\\AppData\\Roaming\\npm\\newman run D:\\InstalledSoftwares\\newman\\World-TimeZone.postman_collection.json --disable-unicode '
 			}
 		}
 

@@ -9,5 +9,4 @@ http:
     host: "worldtimeapi.org"
 
 api:
-  autodiscovery:
-    id:"19240709"
+  id:"19240709"

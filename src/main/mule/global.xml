@@ -11,7 +11,7 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
 	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="4257ec6a-6d26-40c1-adea-31069de0567f" basePath="/api/timezone" >
 		<http:request-connection host="worldtimeapi.org" />
 	</http:request-config>
-	<api-gateway:autodiscovery apiId="${api.autodiscovery.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="eb710126-6a02-4321-8917-8a9fccb281d5" flowRef="mule-world-timezoneFlow" />
+	<api-gateway:autodiscovery apiId="${api.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="eb710126-6a02-4321-8917-8a9fccb281d5" flowRef="mule-world-timezoneFlow" />
 	<configuration-properties doc:name="Configuration properties" doc:id="14519cfb-2855-4e62-a72e-0e71bb65a043" file="${env}.yaml" />
 	<global-property doc:name="Global Property" doc:id="59548064-6030-4e36-bf43-2f47162ea6e5" name="env" value="DEV" />
 </mule>

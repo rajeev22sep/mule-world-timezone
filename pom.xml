@@ -171,6 +171,7 @@
 									<anypoint.platform.client_secret>${dev.clientSecret}</anypoint.platform.client_secret>
 									<http.port>8082</http.port>
 									<env>DEV</env>
+									<api.id>19240709</api.id>
 								</properties>
 							</cloudHubDeployment>
 						</configuration>
@@ -201,6 +202,7 @@
 									<anypoint.platform.client_secret>${qa.clientSecret}</anypoint.platform.client_secret>
 									<http.port>8082</http.port>
 									<env>QA</env>
+									<api.id>19240709</api.id>
 								</properties>
 							</cloudHubDeployment>
 						</configuration>

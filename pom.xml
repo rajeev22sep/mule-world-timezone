@@ -6,7 +6,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>mule-world-timezone</artifactId>
-	<version>6.0.0</version>
+	<version>7.0.0</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-world-timezone</name>
@@ -202,7 +202,7 @@
 									<anypoint.platform.client_secret>${qa.clientSecret}</anypoint.platform.client_secret>
 									<http.port>8082</http.port>
 									<env>QA</env>
-									<api.id>19240709</api.id>
+									<api.id>19236311</api.id>
 								</properties>
 							</cloudHubDeployment>
 						</configuration>

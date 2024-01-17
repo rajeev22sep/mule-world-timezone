@@ -1,0 +1,13 @@
+http:
+  listner:
+    path: "/api"
+    port: "8081"
+    host: "localhost"
+  
+  requester:
+    path: "/api/timezone"
+    host: "worldtimeapi.org"
+
+api:
+  autodiscovery:
+    id:"19240709"

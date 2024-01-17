@@ -5,11 +5,13 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c26bd233-a6b2-4eeb-9845-2b9123d2c69b" basePath="/api" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c26bd233-a6b2-4eeb-9845-2b9123d2c69b" basePath="${http.listner.path}" >
+		<http:listener-connection host="0.0.0.0" port="${http.listner.port}" />
 	</http:listener-config>
 	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="4257ec6a-6d26-40c1-adea-31069de0567f" basePath="/api/timezone" >
 		<http:request-connection host="worldtimeapi.org" />
 	</http:request-config>
-	<api-gateway:autodiscovery apiId="19236311" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="eb710126-6a02-4321-8917-8a9fccb281d5" flowRef="mule-world-timezoneFlow" />
+	<api-gateway:autodiscovery apiId="${api.autodiscovery.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="eb710126-6a02-4321-8917-8a9fccb281d5" flowRef="mule-world-timezoneFlow" />
+	<configuration-properties doc:name="Configuration properties" doc:id="14519cfb-2855-4e62-a72e-0e71bb65a043" file="${env}.yaml" />
+	<global-property doc:name="Global Property" doc:id="59548064-6030-4e36-bf43-2f47162ea6e5" name="env" value="DEV" />
 </mule>

@@ -27,6 +27,17 @@ pipeline {
 			}
 		
 		}
+		
+		stage('Static Analysis') {  
+  			withSonarQubeEnv('SONAR_JENKINS_TOKEN') {
+  				steps{
+     				bat 'mvn sonar:sonar'
+    		 		echo '********** Static Analysis Completed **********' 
+    			}
+  			}
+		}
+		
+		
 
 		stage('Munit Test') {
 			steps {

@@ -29,11 +29,11 @@ pipeline {
 		}
 		
 		stage('Static Analysis') {  
-  			withSonarQubeEnv('SONAR_JENKINS_TOKEN') {
-  				steps{
-     				bat 'mvn sonar:sonar'
-    		 		echo '********** Static Analysis Completed **********' 
-    			}
+			steps{
+  					withSonarQubeEnv('SONAR_JENKINS_TOKEN') {
+  						bat 'mvn verify sonar:sonar'
+    		 			echo '********** Static Analysis Completed **********' 
+    				}
   			}
 		}
 		

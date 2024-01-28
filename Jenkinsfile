@@ -30,7 +30,7 @@ pipeline {
 		
 		stage('Static Analysis') {  
 			steps{
-  					withSonarQubeEnv('SONAR_JENKINS_TOKEN') {
+  					withSonarQubeEnv('LocalSonarScanner') {
   						bat 'mvn verify sonar:sonar'
     		 			echo '********** Static Analysis Completed **********' 
     				}

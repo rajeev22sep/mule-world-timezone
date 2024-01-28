@@ -30,7 +30,7 @@ pipeline {
 		
 		stage('Static Analysis') {  
 			steps{
-  					withSonarQubeEnv('LocalSonarScanner') {
+  					withSonarQubeEnv('SonarQubeServer') {
   						bat 'mvn verify sonar:sonar'
     		 			echo '********** Static Analysis Completed **********' 
     				}

@@ -21,20 +21,22 @@ pipeline {
 
 	stages {
 	
+		
+		stage('Static Analysis') {  
+			steps{
+  					withSonarQubeEnv('SonarQubeServer') {
+  						echo '********** Static Analysis Started **********' 
+  						bat 'mvn -B -U -e -V clean -DskipTests verify sonar:sonar'
+    		 			echo '********** Static Analysis Completed **********' 
+    				}
+  			}
+		}
+		
 		stage('Build') {
 			steps {
 				bat 'mvn -B -U -e -V clean -DskipTests package'	
 			}
 		
-		}
-		
-		stage('Static Analysis') {  
-			steps{
-  					withSonarQubeEnv('SonarQubeServer') {
-  						bat 'mvn verify sonar:sonar'
-    		 			echo '********** Static Analysis Completed **********' 
-    				}
-  			}
 		}
 		
 		
